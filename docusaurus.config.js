@@ -106,11 +106,11 @@ const config = {
               },
               {
                 label: 'Deployment',
-                to: '/docs/Deployment/docker-compose',
+                to: '/docs/deployment/docker-compose',
               },
               {
                 label: 'Advanced Topics',
-                to: '/docs/Advanced/auto-merge-channels',
+                to: '/docs/advanced/auto-merge-channels',
               },
             ],
           },

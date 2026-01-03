@@ -316,6 +316,6 @@ tail -f storage/logs/laravel.log
 
 ## Next Steps
 
-- [EPG Setup](/docs/Resources/epg-setup) - Initial EPG configuration
-- [Auto-Merge Channels](/docs/Advanced/auto-merge-channels) - Automatic channel management
-- [M3U Proxy Integration](/docs/Deployment/m3u-proxy-integration) - External proxy setup
+- [EPG Setup](/docs/resources/epg-setup) - Initial EPG configuration
+- [Auto-Merge Channels](/docs/advanced/auto-merge-channels) - Automatic channel management
+- [M3U Proxy Integration](/docs/deployment/m3u-proxy-integration) - External proxy setup

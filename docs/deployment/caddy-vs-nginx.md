@@ -278,6 +278,6 @@ For existing Nginx users or complex setups, stick with **Nginx** for its:
 
 ## Next Steps
 
-- [Docker Compose Deployments](/docs/Deployment/docker-compose) - All deployment options
-- [M3U Proxy Integration](/docs/Deployment/m3u-proxy-integration) - External proxy setup
+- [Docker Compose Deployments](/docs/deployment/docker-compose) - All deployment options
+- [M3U Proxy Integration](/docs/deployment/m3u-proxy-integration) - External proxy setup
 - [Configuration Guide](/docs/configuration) - Environment variables and settings

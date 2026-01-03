@@ -116,6 +116,6 @@ For very large EPG files:
 
 ## Next Steps
 
-- [EPG Optimization](/docs/Advanced/epg-optimization) - Performance tuning for large EPG files
-- [Auto-Merge Channels](/docs/Advanced/auto-merge-channels) - Automatic channel management
-- [Docker Compose Deployments](/docs/Deployment/docker-compose) - Deploy to production
+- [EPG Optimization](/docs/advanced/epg-optimization) - Performance tuning for large EPG files
+- [Auto-Merge Channels](/docs/advanced/auto-merge-channels) - Automatic channel management
+- [Docker Compose Deployments](/docs/deployment/docker-compose) - Deploy to production

@@ -98,19 +98,19 @@ See [Installation](/docs/installation) for detailed setup instructions.
 New to M3U Editor? Start here:
 - [Installation](/docs/installation)
 - [Configuration](/docs/configuration)
-- [Adding Playlists](/docs/Resources/adding-playlists)
-- [EPG Setup](/docs/Resources/epg-setup)
+- [Adding Playlists](/docs/resources/adding-playlists)
+- [EPG Setup](/docs/resources/epg-setup)
 
 ### 🚀 Deployment
 Production deployment guides:
-- [Docker Compose](/docs/Deployment/docker-compose)
-- [M3U Proxy Setup](/docs/Deployment/m3u-proxy-integration)
-- [Caddy vs Nginx](/docs/Deployment/caddy-vs-nginx)
+- [Docker Compose](/docs/deployment/docker-compose)
+- [M3U Proxy Setup](/docs/deployment/m3u-proxy-integration)
+- [Caddy vs Nginx](/docs/deployment/caddy-vs-nginx)
 
 ### ⚡ Advanced Topics
 Deep dives into advanced features:
-- [Auto-Merge Channels](/docs/Advanced/auto-merge-channels)
-- [EPG Optimization](/docs/Advanced/epg-optimization)
+- [Auto-Merge Channels](/docs/advanced/auto-merge-channels)
+- [EPG Optimization](/docs/advanced/epg-optimization)
 
 ### 💬 Community & Support
 Get help and contribute:

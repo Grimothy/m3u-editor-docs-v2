@@ -111,6 +111,6 @@ Manage multiple channels at once:
 
 ## Next Steps
 
-- [EPG Setup](/docs/Resources/epg-setup) - Add program guide data
-- [Auto-Merge Channels](/docs/Advanced/auto-merge-channels) - Automatic channel deduplication
-- [Docker Compose Deployments](/docs/Deployment/docker-compose) - Deploy to production
+- [EPG Setup](/docs/resources/epg-setup) - Add program guide data
+- [Auto-Merge Channels](/docs/advanced/auto-merge-channels) - Automatic channel deduplication
+- [Docker Compose Deployments](/docs/deployment/docker-compose) - Deploy to production
