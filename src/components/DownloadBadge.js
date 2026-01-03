@@ -2,25 +2,39 @@ import React, {useEffect, useState} from 'react';
 import styles from './DownloadBadge.module.css';
 
 export default function DownloadBadge() {
-  const [downloadsText, setDownloadsText] = useState('120,000+');
+  const [downloadsText, setDownloadsText] = useState('Loading...');
 
   useEffect(() => {
-    // Try to fetch generated downloads JSON from static folder
-    fetch('/data/downloads.json')
-      .then((r) => { if (!r.ok) throw new Error('No downloads file'); return r.json(); })
-      .then((d) => {
-        if (d && d.formatted) setDownloadsText(d.formatted);
-        else if (d && typeof d.downloads === 'number') setDownloadsText(`${d.downloads}`);
+    // Fetch from Docker Hub API
+    fetch('https://hub.docker.com/v2/repositories/sparkison/m3u-editor/')
+      .then((r) => { 
+        if (!r.ok) throw new Error('Failed to fetch'); 
+        return r.json(); 
+      })
+      .then((data) => {
+        if (data && typeof data.pull_count === 'number') {
+          // Format the number with commas
+          const formatted = data.pull_count.toLocaleString('en-US');
+          setDownloadsText(`${formatted}+`);
+        }
       })
       .catch(() => {
-        // ignore - fall back to hardcoded
+        // Fallback to hardcoded value
+        setDownloadsText('120,000+');
       });
   }, []);
 
   return (
-    <div className={styles.downloadBadge} role="status" aria-live="polite">
+    <a 
+      href="https://hub.docker.com/r/sparkison/m3u-editor" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className={styles.downloadBadge} 
+      role="status" 
+      aria-live="polite"
+    >
       <span className={styles.emoji} aria-hidden="true">🚀</span>
       {downloadsText} Downloads
-    </div>
+    </a>
   );
 }
