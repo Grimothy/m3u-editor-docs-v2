@@ -4,7 +4,7 @@ description: Add your first M3U playlist to M3U Editor
 tags:
   - Getting Started
   - Playlists
-title: Adding Playlists
+title: Playlist Setup
 ---
 
 # Adding Playlists

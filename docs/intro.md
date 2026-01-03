@@ -10,6 +10,14 @@ title: Welcome
   <img src="/img/logo.png" alt="M3U Editor logo" style={{ width: '220px', maxWidth: '10%' }} />
 </div>
 
+<div style={{ textAlign: 'center', padding: '1rem 0' }}>
+  <img src="https://img.shields.io/docker/pulls/sparkison/m3u-editor?style=for-the-badge&logo=docker&label=Docker%20Downloads" alt="Docker Downloads" />
+  {' '}
+  <img src="https://img.shields.io/github/stars/sparkison/m3u-editor?style=for-the-badge&logo=github" alt="GitHub Stars" />
+  {' '}
+  <img src="https://img.shields.io/discord/1341113998971768953?style=for-the-badge&logo=discord&label=Discord" alt="Discord" />
+</div>
+
 # Welcome to M3U Editor
 
 **M3U Editor** is a full-featured, open-source IPTV playlist manager with advanced features similar to **xteve** or **threadfin**.
