@@ -1,14 +1,14 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 description: Get started with M3U Editor - Installation and quick setup guide
 tags:
   - Getting Started
   - Installation
   - Docker
-title: Installation
+title: Compose Examples
 ---
 
-# Installation
+# Docker Compose Installation
 
 Get M3U Editor up and running in minutes with Docker!
 

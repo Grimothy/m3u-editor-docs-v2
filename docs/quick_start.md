@@ -1,5 +1,9 @@
 ---
-title: Quick Started
+sidebar_position: 1
+description: Getting up and running quickly
+tags:
+  - Getting Started
+title: Quick Start
 ---
 
 <div style={{ textAlign: 'center', padding: '0 0 2rem 0' }}>

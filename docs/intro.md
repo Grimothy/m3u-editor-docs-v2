@@ -1,13 +1,13 @@
 ---
+sidebar_position: 0
 description: Documentation home for m3u-editor
 tags:
   - Getting Started
 title: Welcome
-sidebar_position: 0
 ---
 
 <div style={{ textAlign: 'center', padding: '0 0 2rem 0' }}>
-  <img src="/img/logo.png" alt="M3U Editor logo" style={{ width: '220px', maxWidth: '100%' }} />
+  <img src="/img/logo.png" alt="M3U Editor logo" style={{ width: '220px', maxWidth: '10%' }} />
 </div>
 
 # Welcome to M3U Editor
