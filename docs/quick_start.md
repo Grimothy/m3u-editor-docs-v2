@@ -73,17 +73,13 @@ services:
       - APP_URL=${APP_URL:-http://localhost}
       - APP_PORT=${APP_PORT:-36400}
 
-      # Web Server Configuration
-      # - NGINX_ENABLED=true # Set to false to disable embedded NGINX and use your own service
-      # - FPMPORT=9000 # Default FPM port
-
       # Postgres Configuration
       - ENABLE_POSTGRES=true # Use embedded Postgres, disable to use your own Postgres service
       - PG_DATABASE=${PG_DATABASE:-m3ue}
       - PG_USER=${PG_USER:-m3ue}
       - PG_PASSWORD=${PG_PASSWORD:-changeme}
       - PG_PORT=${PG_PORT:-5432}
-      
+
       # Database Connection (m3u-editor)
       - DB_CONNECTION=pgsql
       - DB_HOST=localhost
@@ -93,10 +89,9 @@ services:
       - DB_PASSWORD=${PG_PASSWORD:-changeme}
 
       # Redis configuration
-      - REDIS_ENABLED=false # Disable embedded Redis
+      - REDIS_ENABLED=true # Use embedded Redis
       - REDIS_SERVER_PORT=${REDIS_PORT:-6379}
-      - REDIS_HOST=${REDIS_HOST:-redis}
-      - REDIS_PASSWORD=${REDIS_PASSWORD:-changeme}
+      # -REDIS_PASSWORD=${M3U_PROXY_TOKEN:-changeme} # Automatically set to API_TOKEN
       
       # M3U Proxy Configuration (External)
       - M3U_PROXY_ENABLED=false # Disable embedded and use external m3u-proxy
@@ -112,14 +107,10 @@ services:
     restart: unless-stopped
     ports:
       - "${APP_PORT:-36400}:${APP_PORT:-36400}"  # Main application port
+      - "${XTREAM_PORT:-36401}:${XTREAM_PORT:-36401}"  # Xtream API endpoint (when XTREAM_ONLY_ENABLED=true)
       # - "${PG_PORT:-5432}:${PG_PORT:-5432}"  # Uncomment to expose PostgreSQL
     networks:
       - m3u-network
-    depends_on:
-      m3u-proxy:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:${APP_PORT:-36400}/up"]
       interval: 30s
@@ -138,21 +129,13 @@ services:
       # Redis Configuration (for stream pooling)
       - REDIS_ENABLED=true
       - REDIS_PORT=${REDIS_PORT:-6379}
-      - REDIS_HOST=${REDIS_HOST:-redis}
-      - REDIS_PASSWORD=${REDIS_PASSWORD:-changeme}
+      - REDIS_HOST=m3u-editor # Connect to m3u-editor's embedded Redis instance
       - REDIS_DB=6 # 1-5 used by m3u-editor, so use 6 for m3u-proxy
+      # -REDIS_PASSWORD=${M3U_PROXY_TOKEN:-changeme} # Automatically set to API_TOKEN
       - ENABLE_REDIS_POOLING=true
       
       # Logging
       - LOG_LEVEL=INFO
-      
-      # Note: ROOT_PATH=/m3u-proxy is now the default, no need to set it explicitly
-      # Only set ROOT_PATH= (empty) if you need to use the root path instead
-      
-      # Optional: Additional configuration
-      # - REDIS_POOL_MAX_CONNECTIONS=50
-      # - STREAM_TIMEOUT=300
-      # - CLEANUP_INTERVAL=60
     restart: unless-stopped
     # Don't expose port externally - only accessible via internal network
     # ports:
@@ -160,7 +143,7 @@ services:
     networks:
       - m3u-network
     depends_on:
-      redis:
+      m3u-editor:
         condition: service_healthy
     #devices:
     #  - /dev/dri:/dev/dri
@@ -170,42 +153,7 @@ services:
       timeout: 2s
       retries: 12
       start_period: 10s
-    
-    # Optional: Resource limits
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: '2.0'
-    #       memory: 2G
-    #     reservations:
-    #       cpus: '0.5'
-    #       memory: 512M
 
-  redis:
-    image: redis:alpine3.22
-    container_name: m3u-redis
-    volumes:
-      - redis-data:/data
-    restart: unless-stopped
-    command: redis-server --port ${REDIS_PORT:-6379} --requirepass ${REDIS_PASSWORD:-changeme} --appendonly no --save "" --maxmemory 256mb --maxmemory-policy allkeys-lru
-    networks:
-      - m3u-network
-    healthcheck:
-      test: ["CMD", "redis-cli", "-p", "${REDIS_PORT:-6379}", "-a", "${REDIS_PASSWORD:-changeme}", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
-    
-    # Optional: Resource limits
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: '1.0'
-    #       memory: 512M
-    #     reservations:
-    #       cpus: '0.25'
-    #       memory: 128M
 networks:
   m3u-network:
     driver: bridge
@@ -213,8 +161,7 @@ networks:
 volumes:
   pgdata:
     driver: local
-  redis-data:
-    driver: local
+
 ```
 
 ### M3U-Proxy Embedded (Simple Alternative){#deployment-proxy\_embedded}
