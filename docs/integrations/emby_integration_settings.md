@@ -93,9 +93,3 @@ Configures synchronization schedule with the integrated media server. The follow
 * Weekly (Sunday)
 
 ![Media server integration sync schedule](/img/doc_imgs/media_server_integration_sync_schedule.png)
-
----
-
-:::danger Disclaimer
-M3U Editor is an independent, open-source playlist manager — **not an IPTV provider**. We don't host channels or partner with streaming services. Please only use content you're authorized to access.
-:::
