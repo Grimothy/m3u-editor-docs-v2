@@ -148,6 +148,10 @@ const config = {
                 href: 'https://github.com/sparkison/m3u-editor',
               },
               {
+                label: 'GitHub (Proxy)',
+                href: 'https://github.com/sparkison/m3u-proxy',
+              },
+              {
                 label: 'GitHub (Docs)',
                 href: 'https://github.com/sparkison/m3u-editor-docs-v2',
               },
