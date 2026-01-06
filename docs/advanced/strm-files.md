@@ -15,7 +15,6 @@ title: .strm Files Guide
 
 Learn how to use M3U Editor's .strm file generation to integrate your IPTV content with Plex, Jellyfin, Emby, and other media servers.
 
----
 
 ## 🎯 What are .strm Files?
 

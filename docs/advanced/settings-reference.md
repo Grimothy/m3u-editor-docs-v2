@@ -14,7 +14,6 @@ Complete guide to all settings available in the M3U Editor Settings page (admin-
 
 **Access**: Sidebar → **Settings** (⚙️ icon)
 
----
 
 ## 🎨 Appearance Tab
 
