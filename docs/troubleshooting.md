@@ -41,7 +41,7 @@ a normal line should look like this:
 
 ### Why do all routes point to m3u editor, even when the proxy is disabled
 
-⚡️ We route all channels/series/etc. through m3u editor, so you will see URLs in the format of: http://m3ueditor-url.example/live/user/pass/stream_id.m3u8, or http://m3ueditor-url.example/movies/user/pass/stream_id.m3u8, etc.
+We route all channels/series/etc. through m3u editor, so you will see URLs in the format of: http://m3ueditor-url.example/live/user/pass/stream_id.m3u8, or http://m3ueditor-url.example/movies/user/pass/stream_id.m3u8, etc.
 
 When a player requests one of these streams, m3u editor will determine if the proxy is enabled, and if so, proxy the stream. If the proxy is NOT enabled, then we simply send a redirect to the original stream
 
@@ -49,16 +49,20 @@ There has been some confusion about the URLs with the proxy disabled. **This is 
 
 ### In-app player is not working
 
-:earth_americas: Due to browser playback limitations, most streams (with the exception of a few providers) will need to be transcoded to work in the in-app player
+Due to browser playback limitations, most streams (with the exception of a few providers) will need to be transcoded to work in the in-app player
 
-⚡️ How to transcode streams
+How to transcode streams
 
 1. Create a Stream Profile: Navigate to **Stream Profiles** and press the **Generate Default Profiles** button
 2. Go to **Settings > Proxy** and select a profile for the **Default Transcoding Profile**
 3. (optional) if VOD content does not play in the in-app player, you may also need to assign a stream profile for VOD content as well
 
-:question: the transcoding profiles set in **Settings > Proxy** will be used *for the in-app player only* – you must assign transcoding profiles to each Playlist to transcode the streams for that Playlist (Edit Playlist and adjust settings under the **Output** tabs **Streaming Output** section)
-
-:bangbang: when using a Stream Profile (transcoding) for VOD/Series content you will lose the ability to time seek. You can, however, use the proxy and time seek will work. Only transcoding will prevent time seeking for the stream as it turns into a live-transcoded stream.
-
 ![Default transcoding profile for in-app player](/img/doc_imgs/default-transcode-profile.png)
+
+:::note Note
+the transcoding profiles set in **Settings > Proxy** will be used *for the in-app player only* – you must assign transcoding profiles to each Playlist to transcode the streams for that Playlist (Edit Playlist and adjust settings under the **Output** tabs **Streaming Output** section)
+:::
+
+:::danger Time Seeking
+when using a Stream Profile (transcoding) for VOD/Series content you will lose the ability to time seek. You can, however, use the proxy in direct mode and time seek will work. **Only transcoding will prevent time seeking for the stream as it turns into a live-transcoded stream**.
+:::
