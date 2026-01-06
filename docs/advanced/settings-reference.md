@@ -1,4 +1,4 @@
-
+---
 sidebar_position: 4
 description: Complete Settings page reference for M3U Editor
 tags:
@@ -6,7 +6,7 @@ tags:
   - Configuration
   - Admin
 title: Settings Reference
-
+---
 
 # Settings Reference
 

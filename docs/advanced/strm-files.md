@@ -1,4 +1,4 @@
-
+---
 sidebar_position: 3
 description: Complete guide to .strm file generation for media server integration
 tags:
@@ -9,7 +9,7 @@ tags:
   - Jellyfin
   - Emby
 title: .strm Files Guide
-
+---
 
 # .strm Files for Media Server Integration
 
