@@ -21,6 +21,7 @@ As of 1/3/2025 -- Integrations are currently only deployed in the **experimental
 :::
 
 - [x] Initial Emby and Jellyfin integration **Experimental Branch**
+- [ ] Integrated Live TV EPG support for Emby\Jellyfin. [Requested Feature!](https://github.com/sparkison/m3u-editor/issues/477#event-21964779841)
 - [ ] Emby\Jellyfin user imports.
 - [ ] Basic Plex integration.
 - [ ] Local media integration.
