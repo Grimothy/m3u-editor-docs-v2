@@ -34,25 +34,21 @@ M3U Editor uses environment variables for configuration. These are typically set
 - **Default**: `36400`
 - **Description**: Port number for the application (Docker environments)
 
+### XTREAM_PORT
+- **Default**: `36401`
+- **Description**: Port number for the Xtream API only endpoint (separate Nginx instance)
+- **Note**: Only used when `XTREAM_ONLY_ENABLED=true`
+
+### XTREAM_ONLY_ENABLED
+- **Default**: `false`
+- **Description**: Enable a separate Nginx instance that only serves the Xtream API endpoint
+- **Options**: `true`, `false`
+- **Use Case**: Provides isolated Xtream API access on a different port, proxying requests to the main application
 
 ### TZ
 - **Default**: `UTC`
 - **Description**: Default timezone for the application
 - **Example**: `America/New_York`, `Europe/London`
-
-## Localization
-
-### APP_LOCALE
-- **Default**: `en`
-- **Description**: Default application locale
-
-### APP_FALLBACK_LOCALE
-- **Default**: `en`
-- **Description**: Fallback locale when current locale is unavailable
-
-### APP_FAKER_LOCALE
-- **Default**: `en_US`
-- **Description**: Locale for fake data generation (development/testing)
 
 ## Database Configuration
 
