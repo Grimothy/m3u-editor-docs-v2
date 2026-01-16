@@ -19,17 +19,6 @@ The media server integration contains various actionable items depicted below
  
  ![Media Server Intergrations Action Menu](/img/doc_imgs/media_server_integration_action_menu.png)
 
-### Test Connection
-
-**Purpose:** Tests the connection to the media server
-
-**Behavior:**
-* Calls the MediaServerService to test connectivity
-* Shows success notification with server name and version if successful
-* Shows error notification with failure message if unsuccessful
-
----
-
 ### Sync Now
 
 **Purpose:** Manually triggers a full sync of content from the media server
@@ -42,6 +31,23 @@ The media server integration contains various actionable items depicted below
 
 ---
 
+### Test Connection
+
+**Purpose:** Tests the connection to the media server
+
+**Behavior:**
+* Calls the MediaServerService to test connectivity
+* Shows success notification with server name and version if successful
+* Shows error notification with failure message if unsuccessful
+
+---
+
+### View Playlist
+
+Navigates to the associated playlist’s edit page
+
+---
+
 ### Cleanup Duplicates
 
 **Purpose:** Removes duplicate series entries created during sync format changes
@@ -51,18 +57,6 @@ The media server integration contains various actionable items depicted below
 * Calls cleanupDuplicateSeries() method
 * Shows info notification if no duplicates found
 * Shows success notification with counts of merged/deleted items if duplicates were found
----
-
-### Edit
-
- Opens the edit form for the media server integration
-
----
-
-### View Playlist
-
-Navigates to the associated playlist’s edit page
-
 ---
 
 ### Delete
