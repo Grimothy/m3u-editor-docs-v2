@@ -12,7 +12,7 @@ title: Pooled Provider Profiles
 # Pooled Provider Profiles
 
 :::info
-As of 1/5/2025 -- provider profiles are only available in the **experimental branch**
+As of 1/16/2025 -- provider profiles are only available in the **dev** and **experimental** branches
 :::
 
 ## Overview
