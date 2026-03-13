@@ -68,9 +68,11 @@ M3U_PROXY_ENABLED=false  # Use external proxy
 For optimal performance and reduced disk wear, store HLS segments in RAM using tmpfs. This provides faster I/O and eliminates disk writes for temporary segment files.
 :::
 
-For better performance and reduced disk wear, store HLS segments in RAM using tmpfs:
+For better performance and reduced disk wear, store HLS segments in RAM using tmpfs.
 
-**Docker Compose:**
+**Important:** The tmpfs mount must be on the container that runs the m3u-proxy process, since that's where FFmpeg writes HLS segments. m3u-editor never reads or writes segment files directly.
+
+**Embedded proxy** (m3u-proxy runs inside the m3u-editor container):
 ```yaml
 services:
   m3u-editor:
@@ -80,6 +82,18 @@ services:
       - pgdata:/var/lib/postgresql/data
       - type: tmpfs
         target: /var/www/html/storage/app/hls-segments
+        tmpfs:
+          size: 512M  # Adjust based on concurrent networks
+```
+
+**External proxy** (m3u-proxy is a separate container):
+```yaml
+services:
+  m3u-proxy:
+    # ... other config ...
+    volumes:
+      - type: tmpfs
+        target: /tmp/m3u-proxy-broadcasts
         tmpfs:
           size: 512M  # Adjust based on concurrent networks
 ```
@@ -224,8 +238,6 @@ services:
       - APP_URL=http://localhost
       - APP_PORT=36400
       - NETWORK_BROADCAST_ENABLED=true
-      - HLS_TEMP_DIR=/var/www/html/storage/app/hls-segments
-      - HLS_GC_ENABLED=true
       - M3U_PROXY_ENABLED=false
       - M3U_PROXY_HOST=m3u-proxy
       - M3U_PROXY_TOKEN=${M3U_PROXY_TOKEN}
@@ -235,10 +247,6 @@ services:
     volumes:
       - ./data:/var/www/config
       - pgdata:/var/lib/postgresql/data
-      - type: tmpfs
-        target: /var/www/html/storage/app/hls-segments
-        tmpfs:
-          size: 512M
     ports:
       - "36400:36400"
     networks:
@@ -247,6 +255,8 @@ services:
       - m3u-proxy
       - redis
 
+  # HLS segments are written by m3u-proxy (via FFmpeg), not m3u-editor.
+  # In external proxy mode, all HLS config belongs on this service.
   m3u-proxy:
     image: sparkison/m3u-proxy:experimental
     container_name: m3u-proxy
@@ -254,6 +264,15 @@ services:
       - API_TOKEN=${M3U_PROXY_TOKEN}
       - REDIS_ENABLED=true
       - REDIS_HOST=redis
+      - HLS_TEMP_DIR=${HLS_TEMP_DIR:-/tmp/m3u-proxy-broadcasts}
+      - HLS_GC_ENABLED=${HLS_GC_ENABLED:-true}
+      - HLS_GC_INTERVAL=${HLS_GC_INTERVAL:-600}
+      - HLS_GC_AGE_THRESHOLD=${HLS_GC_AGE_THRESHOLD:-7200}
+    volumes:
+      - type: tmpfs
+        target: /tmp/m3u-proxy-broadcasts
+        tmpfs:
+          size: 512M  # Adjust based on concurrent networks
     devices:
       - /dev/dri:/dev/dri  # Hardware acceleration
     networks:
