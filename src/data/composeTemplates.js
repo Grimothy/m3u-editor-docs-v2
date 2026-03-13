@@ -133,6 +133,10 @@ const generateEditorEnv = (config, deploymentType) => {
     addEnvVar(envVars, 'HLS_GC_ENABLED', config.HLS_GC_ENABLED, !config.HLS_GC_ENABLED);
     addEnvVar(envVars, 'HLS_GC_INTERVAL', config.HLS_GC_INTERVAL, config.HLS_GC_INTERVAL !== '60');
     addEnvVar(envVars, 'HLS_GC_AGE_THRESHOLD', config.HLS_GC_AGE_THRESHOLD, config.HLS_GC_AGE_THRESHOLD !== '300');
+    // Broadcast GC settings (only relevant when broadcasting is enabled)
+    addEnvVar(envVars, 'BROADCAST_GC_ENABLED', config.BROADCAST_GC_ENABLED, config.BROADCAST_GC_ENABLED === false);
+    addEnvVar(envVars, 'BROADCAST_GC_INTERVAL', config.BROADCAST_GC_INTERVAL, config.BROADCAST_GC_INTERVAL && config.BROADCAST_GC_INTERVAL !== '300');
+    addEnvVar(envVars, 'BROADCAST_GC_AGE_THRESHOLD', config.BROADCAST_GC_AGE_THRESHOLD, config.BROADCAST_GC_AGE_THRESHOLD && config.BROADCAST_GC_AGE_THRESHOLD !== '600');
   }
 
   // Auth settings
@@ -220,6 +224,20 @@ const generateProxyService = (config, useVpnNetwork = false) => {
   if (config.HLS_GC_AGE_THRESHOLD && config.HLS_GC_AGE_THRESHOLD !== '300') {
     service += `
       - HLS_GC_AGE_THRESHOLD=${config.HLS_GC_AGE_THRESHOLD}`;
+  }
+
+  // Broadcast GC settings (cleans orphaned segments during programme transitions)
+  if (config.BROADCAST_GC_ENABLED === false) {
+    service += `
+      - BROADCAST_GC_ENABLED=false`;
+  }
+  if (config.BROADCAST_GC_INTERVAL && config.BROADCAST_GC_INTERVAL !== '300') {
+    service += `
+      - BROADCAST_GC_INTERVAL=${config.BROADCAST_GC_INTERVAL}`;
+  }
+  if (config.BROADCAST_GC_AGE_THRESHOLD && config.BROADCAST_GC_AGE_THRESHOLD !== '600') {
+    service += `
+      - BROADCAST_GC_AGE_THRESHOLD=${config.BROADCAST_GC_AGE_THRESHOLD}`;
   }
 
   if (!useVpnNetwork) {

@@ -202,6 +202,8 @@ Add to media clients using the playlist M3U URL and EPG URL.
 - Verify `HLS_GC_ENABLED=true`
 - Lower `HLS_GC_AGE_THRESHOLD` value
 - Increase cleanup frequency with `HLS_GC_INTERVAL`
+- Verify `BROADCAST_GC_ENABLED=true` (cleans orphaned segments during programme transitions)
+- Lower `BROADCAST_GC_AGE_THRESHOLD` for faster stale directory removal
 
 ## Transcoding Profiles
 
@@ -268,6 +270,9 @@ services:
       - HLS_GC_ENABLED=${HLS_GC_ENABLED:-true}
       - HLS_GC_INTERVAL=${HLS_GC_INTERVAL:-600}
       - HLS_GC_AGE_THRESHOLD=${HLS_GC_AGE_THRESHOLD:-7200}
+      - BROADCAST_GC_ENABLED=${BROADCAST_GC_ENABLED:-true}
+      - BROADCAST_GC_INTERVAL=${BROADCAST_GC_INTERVAL:-300}
+      - BROADCAST_GC_AGE_THRESHOLD=${BROADCAST_GC_AGE_THRESHOLD:-600}
     volumes:
       - type: tmpfs
         target: /tmp/m3u-proxy-broadcasts
